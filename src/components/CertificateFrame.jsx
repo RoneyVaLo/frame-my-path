@@ -57,7 +57,7 @@ const CertificateFrame = ({ certificate, index }) => {
             >
               <img
                 src={certificate.image || "/placeholder.svg"}
-                alt={certificate.title}
+                alt={`Certificado de ${certificate.title}`}
                 className="object-cover"
               />
 
@@ -126,7 +126,7 @@ const CertificateFrame = ({ certificate, index }) => {
             >
               <img
                 src={certificate.image || "/placeholder.svg"}
-                alt={certificate.title}
+                alt={`Certificado de ${certificate.title}`}
                 className="w-full h-full object-contain"
               />
             </div>
