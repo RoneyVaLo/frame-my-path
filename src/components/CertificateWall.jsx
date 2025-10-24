@@ -10,43 +10,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/Select";
+import certificates from "../assets/certificates.json";
+import Loader from "./Loader";
 
-const certificates = [
-  {
-    id: 1,
-    title: "Python Essentials 1",
-    institution: "Cisco Networking Academy",
-    year: "2023",
-    image: "/python_essentials_1.jpg",
-  },
-  {
-    id: 2,
-    title: "Javascript Essentials 1",
-    institution: "Cisco Networking Academy",
-    year: "2023",
-    image: "/javascript_essentials_1.jpg",
-  },
-  {
-    id: 3,
-    title: "Operador de Tecnologías de Información y Comunicación",
-    institution: "Instituto Nacional de Aprendizaje (INA)",
-    year: "2024",
-    image: "/operador_de_tecnologías_de_información_y_comunicación.jpg",
-  },
-  {
-    id: 4,
-    title: "Bachillerato en Ingeniería en Software",
-    institution: "Universidad Técnica Nacional (UTN)",
-    year: "2025",
-    image: "/bachillerato_isw.jpg",
-  },
-];
-
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 4;
 
 const CertificateWall = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedInstitution, setSelectedInstitution] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Get unique institutions for filter
   const institutions = useMemo(() => {
@@ -79,13 +51,21 @@ const CertificateWall = () => {
     setCurrentPage(1);
   };
 
-  const handlePreviousPage = () => {
+  const handlePreviousPage = async () => {
+    setLoading(true);
     setCurrentPage((prev) => Math.max(prev - 1, 1));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setLoading(false);
   };
 
-  const handleNextPage = () => {
+  const handleNextPage = async () => {
+    setLoading(true);
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setLoading(false);
   };
+
+  if (loading) return <Loader />;
 
   return (
     <div className="relative min-h-screen bg-linear-to-br from-[#e8dfd0] via-[#d4c5b0] to-[#c9b89a] dark:from-[#2a2520] dark:via-[#1f1b17] dark:to-[#15120f]">
