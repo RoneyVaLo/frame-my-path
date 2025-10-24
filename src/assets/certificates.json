@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Python Essentials 1",
+    "institution": "Cisco Networking Academy",
+    "year": "2023",
+    "image": "/python_essentials_1.webp"
+  },
+  {
+    "id": 2,
+    "title": "Javascript Essentials 1",
+    "institution": "Cisco Networking Academy",
+    "year": "2023",
+    "image": "/javascript_essentials_1.webp"
+  },
+  {
+    "id": 3,
+    "title": "Operador de Tecnologías de Información y Comunicación",
+    "institution": "Instituto Nacional de Aprendizaje (INA)",
+    "year": "2024",
+    "image": "/operador_de_tecnologías_de_información_y_comunicación.webp"
+  },
+  {
+    "id": 4,
+    "title": "Bachillerato en Ingeniería en Software",
+    "institution": "Universidad Técnica Nacional (UTN)",
+    "year": "2025",
+    "image": "/bachillerato_isw.webp"
+  },
+  {
+    "id": 5,
+    "title": "Manipulación de Datos con SQL",
+    "institution": "Instituto Nacional de Aprendizaje (INA)",
+    "year": "2024",
+    "image": "/manipulacion_datos_sql.webp"
+  },
+  {
+    "id": 6,
+    "title": "Introducción a la Ciberseguridad",
+    "institution": "Instituto Nacional de Aprendizaje (INA)",
+    "year": "2024",
+    "image": "/introduccion_ciberseguridad.webp"
+  }
+]
