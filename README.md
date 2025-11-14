@@ -22,7 +22,7 @@ Una galería interactiva y elegante para exhibir certificaciones y logros profes
 1. Clona el repositorio:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/RoneyVaLo/frame-my-path.git
 cd frame-my-path
 ```
 
