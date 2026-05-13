@@ -21,6 +21,20 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
+
+  --wood-light: #8b6f47;
+  --wood-mid: #6b5638;
+  --wood-dark: #4a3d2a;
+  --mat-light: #f5f1e8;
+  --mat-dark: #e8e0d0;
+  --gold: #C8A45C;
+  --gold-soft: #E8D5A3;
+  --gold-pale: rgba(200, 164, 92, 0.15);
+  --gold-text: #7A6630;
+  --wall-start: #e8dfd0;
+  --wall-mid: #d4c5b0;
+  --wall-end: #c9b89a;
+  --loader-bg: #d0c1af;
 }
 
 .dark {
@@ -43,6 +57,20 @@
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
+
+  --wood-light: #5a4a30;
+  --wood-mid: #4a3d2a;
+  --wood-dark: #3a2d1a;
+  --mat-light: #2a2520;
+  --mat-dark: #1f1b17;
+  --gold: #C8A45C;
+  --gold-soft: #A68B4A;
+  --gold-pale: rgba(200, 164, 92, 0.1);
+  --gold-text: #C8A45C;
+  --wall-start: #2a2520;
+  --wall-mid: #1f1b17;
+  --wall-end: #15120f;
+  --loader-bg: #1f1b17;
 }
 
 @theme inline {
@@ -67,6 +95,19 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-wood-light: var(--wood-light);
+  --color-wood-mid: var(--wood-mid);
+  --color-wood-dark: var(--wood-dark);
+  --color-mat-light: var(--mat-light);
+  --color-mat-dark: var(--mat-dark);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-pale: var(--gold-pale);
+  --color-gold-text: var(--gold-text);
+  --color-wall-start: var(--wall-start);
+  --color-wall-mid: var(--wall-mid);
+  --color-wall-end: var(--wall-end);
+  --color-loader-bg: var(--loader-bg);
 }
 
 @layer base {
@@ -76,6 +117,40 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-slide-up {
+  animation: fadeSlideUp 0.3s ease-out both;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f5f1e8 25%, #e8e0d0 50%, #f5f1e8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.dark .animate-shimmer {
+  background: linear-gradient(90deg, #2a2520 25%, #3a3530 50%, #2a2520 75%);
+  background-size: 200% 100%;
 }
 
 .loader {
