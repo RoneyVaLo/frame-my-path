@@ -3,20 +3,23 @@ import { cn } from "../utils/cn";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/Dialog";
 import { useEffect } from "react";
 
+const OFFSETS = [0, 24, 8, 32, 16, 40];
+
 const CertificateFrame = ({ certificate, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isHorizontal, setIsHorizontal] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     const img = new window.Image();
     img.src = certificate.image;
     img.onload = () => {
       setIsHorizontal(img.width > img.height);
+      setImageLoaded(true);
     };
   }, [certificate.image]);
 
-  // Slight rotation for natural wall effect
   const rotations = [
     "-rotate-1",
     "rotate-1",
@@ -26,6 +29,7 @@ const CertificateFrame = ({ certificate, index }) => {
     "-rotate-1",
   ];
   const rotation = rotations[index % rotations.length];
+  const mtOffset = OFFSETS[index % OFFSETS.length];
 
   return (
     <>
@@ -33,32 +37,44 @@ const CertificateFrame = ({ certificate, index }) => {
         onClick={() => setIsDialogOpen(true)}
         className={cn(
           "group relative transition-all duration-300 ease-out cursor-pointer",
-          "w-[250px] md:w-[300px] lg:w-[340px]", // Tamaño fijo adaptable
+          "w-[250px] md:w-[300px] lg:w-[340px]",
           rotation,
-          isHovered && "scale-105 z-10 cursor-zoom-in"
-          // isHorizontal && "md:col-span-2"
+          isHovered && "scale-105 z-10 cursor-zoom-in",
         )}
+        style={{ marginTop: `${mtOffset}px` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Frame shadow */}
-        <div className="absolute -inset-4 bg-black/20 blur-xl rounded-sm transition-opacity duration-300 opacity-40 group-hover:opacity-60" />
+        <div
+          className={cn(
+            "absolute -inset-4 blur-xl rounded-sm transition-all duration-300",
+            isHovered ? "opacity-70 bg-gold/15" : "opacity-40 bg-black/20",
+          )}
+        />
 
         {/* Outer frame (wood effect) */}
-        <div className="relative bg-linear-to-br from-[#8b6f47] via-[#6b5638] to-[#4a3d2a] p-4 md:p-6 rounded-sm shadow-2xl">
+        <div className="relative bg-linear-to-br from-wood-light via-wood-mid to-wood-dark p-4 md:p-6 rounded-sm shadow-2xl transition-shadow duration-300 group-hover:shadow-[0_8px_30px_rgba(200,164,92,0.15)]">
           {/* Inner frame (mat board) */}
-          <div className="bg-linear-to-br from-[#f5f1e8] to-[#e8e0d0] p-3 md:p-4 shadow-inner">
+          <div className="bg-linear-to-br from-mat-light to-mat-dark p-3 md:p-4 shadow-inner">
             {/* Certificate container */}
             <div
               className={cn(
                 "relative bg-white shadow-md overflow-hidden",
-                isHorizontal ? "aspect-4/3" : "aspect-3/4"
+                isHorizontal ? "aspect-4/3" : "aspect-3/4",
               )}
             >
+              {!imageLoaded && (
+                <div className="absolute inset-0 animate-shimmer" />
+              )}
               <img
                 src={certificate.image || "/placeholder.svg"}
                 alt={`Certificado de ${certificate.title}`}
-                className="object-cover"
+                className={cn(
+                  "object-cover transition-opacity duration-300",
+                  imageLoaded ? "opacity-100" : "opacity-0",
+                )}
+                loading="lazy"
               />
 
               {/* Overlay with certificate info on hover */}
@@ -67,7 +83,7 @@ const CertificateFrame = ({ certificate, index }) => {
                   "absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent",
                   "flex flex-col justify-end p-4 md:p-6",
                   "transition-opacity duration-300",
-                  isHovered ? "opacity-100" : "opacity-0"
+                  isHovered ? "opacity-100" : "opacity-0",
                 )}
               >
                 <h3 className="text-white font-serif font-bold text-lg md:text-xl mb-2 text-balance">
@@ -86,17 +102,12 @@ const CertificateFrame = ({ certificate, index }) => {
           {/* Hanging wire effect */}
           <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-16 h-2">
             <div className="w-full h-0.5 bg-linear-to-r from-transparent via-[#4a4a4a] to-transparent" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#4a4a4a] rounded-full shadow-sm" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#4a4a4a] rounded-full shadow-sm" />
           </div>
         </div>
 
         {/* Certificate label below frame */}
-        <div
-          className={cn(
-            "mt-4 text-center transition-opacity duration-300",
-            isHovered ? "opacity-100" : "opacity-0 md:opacity-100"
-          )}
-        >
+        <div className="mt-4 text-center opacity-100">
           <p className="text-sm font-medium text-foreground text-balance">
             {certificate.title}
           </p>
@@ -121,7 +132,7 @@ const CertificateFrame = ({ certificate, index }) => {
             <div
               className={cn(
                 "relative w-full bg-muted",
-                isHorizontal ? "aspect-4/3" : "aspect-3/4"
+                isHorizontal ? "aspect-4/3" : "aspect-3/4",
               )}
             >
               <img
