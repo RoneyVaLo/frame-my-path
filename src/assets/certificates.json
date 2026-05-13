@@ -40,5 +40,12 @@
     "institution": "Instituto Nacional de Aprendizaje (INA)",
     "year": "2024",
     "image": "/introduccion_ciberseguridad.webp"
+  },
+  {
+    "id": 7,
+    "title": "Manipulación de Alimentos",
+    "institution": "Instituto Nacional de Aprendizaje (INA)",
+    "year": "2022",
+    "image": "/manipulacion_alimentos.webp"
   }
 ]
