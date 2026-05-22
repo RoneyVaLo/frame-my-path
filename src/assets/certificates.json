@@ -47,5 +47,40 @@
     "institution": "Instituto Nacional de Aprendizaje (INA)",
     "year": "2022",
     "image": "/manipulacion_alimentos.webp"
+  },
+  {
+    "id": 8,
+    "title": "Administración Agropecuaria",
+    "institution": "Instituto Nacional de Aprendizaje (INA)",
+    "year": "2024",
+    "image": "/administracion_agropecuaria.webp"
+  },
+  {
+    "id": 9,
+    "title": "Gestión Efectiva de las Relaciones Interpersonales",
+    "institution": "Instituto Nacional de Aprendizaje (INA)",
+    "year": "2026",
+    "image": "/gestion_efectiva_de_las_relaciones.webp"
+  },
+  {
+    "id": 10,
+    "title": "Desarrollo con IA: de 0 a Producción",
+    "institution": "BIG school",
+    "year": "2026",
+    "image": "inicio_desarrollo_con_ia.webp"
+  },
+  {
+    "id": 11,
+    "title": "Manipulación de Imágenes con Photoshop",
+    "institution": "Instituto Nacional de Aprendizaje (INA)",
+    "year": "2023",
+    "image": "/manipulacion_photoshop.webp"
+  },
+  {
+    "id": 12,
+    "title": "Python Essentials 2",
+    "institution": "Instituto Nacional de Aprendizaje (INA)",
+    "year": "2025",
+    "image": "/python_essentials_2.webp"
   }
 ]
